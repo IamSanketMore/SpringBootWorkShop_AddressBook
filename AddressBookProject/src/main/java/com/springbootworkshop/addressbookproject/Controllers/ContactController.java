@@ -37,17 +37,24 @@ public class ContactController
     }
 
     @PostMapping("/createContact")
-    public ResponseEntity<String> addContactData(@RequestBody ContactDTO contactDTO ) {
-        return new ResponseEntity<String>("Created address Book Data for: " + contactDTO, HttpStatus.OK);
+    public ResponseEntity<ResponseDTO> addContactData(@RequestBody ContactDTO contactDTO ) {
+        ContactData contactData = null;
+        contactData = new ContactData(1,contactDTO);
+        ResponseDTO respDTO = new ResponseDTO("Created Contact Data for", contactData);
+        return new ResponseEntity<ResponseDTO>(respDTO, HttpStatus.OK);
     }
 
     @PutMapping("/updateContact")
-    public ResponseEntity<String> updateContactData(@RequestBody ContactDTO contactDTO) {
-        return new ResponseEntity<String>("Updated address Book Data for: " + contactDTO, HttpStatus.OK);
+    public ResponseEntity<ResponseDTO> updateContactData(@RequestBody ContactDTO contactDTO) {
+        ContactData contactData = null;
+        contactData = new ContactData(1,contactDTO);
+        ResponseDTO respDTO = new ResponseDTO("Created Contact Data for", contactData);
+        return new ResponseEntity<ResponseDTO>(respDTO, HttpStatus.OK);
     }
 
     @DeleteMapping("/deleteContact/{bookId}")
-    public ResponseEntity<String> deleteContactData(@PathVariable("bookId") int bookId) {
-        return new ResponseEntity<String>("Delete Call Success for id: " + bookId, HttpStatus.OK);
+    public ResponseEntity<ResponseDTO> deleteContactData(@PathVariable("bookId") int bookId) {
+        ResponseDTO respDTO = new ResponseDTO("Delete Call Success for id: ", bookId);
+        return new ResponseEntity<ResponseDTO>(respDTO, HttpStatus.OK);
     }
 }
