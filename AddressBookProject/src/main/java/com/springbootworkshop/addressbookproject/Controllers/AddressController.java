@@ -2,6 +2,8 @@ package com.springbootworkshop.addressbookproject.Controllers;
 
 import com.springbootworkshop.addressbookproject.DTO.AddressDTO;
 import com.springbootworkshop.addressbookproject.DTO.ContactDTO;
+import com.springbootworkshop.addressbookproject.DTO.ResponseDTO;
+import com.springbootworkshop.addressbookproject.Model.AddressData;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -11,8 +13,12 @@ import org.springframework.web.bind.annotation.*;
 public class AddressController
 {
     @GetMapping(value = { "", "/", "/get" })
-    public ResponseEntity<String> getAddressBookData() {
-        return new ResponseEntity<String>("Get Call Success", HttpStatus.OK);
+    public ResponseEntity<ResponseDTO> getAddressBookData()
+    {
+            AddressData addressData = null;
+            addressData = new AddressData(1, new AddressDTO("Deopur Dhule","Dhule","MH",78542187));
+            ResponseDTO respDTO = new ResponseDTO("Get Call Successful", addressData);
+            return new ResponseEntity<ResponseDTO>(respDTO, HttpStatus.OK);
     }
 
     @GetMapping(value =  "/getAllAddressData" )
