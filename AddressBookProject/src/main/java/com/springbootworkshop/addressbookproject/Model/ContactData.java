@@ -1,5 +1,7 @@
 package com.springbootworkshop.addressbookproject.Model;
 
+import com.springbootworkshop.addressbookproject.DTO.ContactDTO;
+
 public class ContactData {
     private int contactId;
     private String firstName;
@@ -9,14 +11,14 @@ public class ContactData {
     private String emailID;
 
 
-    public ContactData(int contactId, ContactData contactData) {
+    public ContactData(int contactId, ContactDTO contactDTO) {
         super();
         this.contactId = contactId;
-        this.firstName = contactData.firstName;
-        this.lastName = contactData.lastName;
-        this.gender = contactData.gender;
-        this.mobileNumber = contactData.mobileNumber;
-        this.emailID = contactData.emailID;
+        this.firstName = contactDTO.firstName;
+        this.lastName = contactDTO.lastName;
+        this.gender = contactDTO.gender;
+        this.mobileNumber = contactDTO.mobileNumber;
+        this.emailID = contactDTO.emailID;
     }
 
     public int getContactId() {
