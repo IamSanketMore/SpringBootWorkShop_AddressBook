@@ -10,7 +10,7 @@ public class AddressData
     private String state;
     private int zip;
 
-    public AddressData(int contactId, AddressDTO addressDTO) {
+    public AddressData(int addressId, AddressDTO addressDTO) {
         super();
         this.addressId = addressId;
         this.address = addressDTO.address;
