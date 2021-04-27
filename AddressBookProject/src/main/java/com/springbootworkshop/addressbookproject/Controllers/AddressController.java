@@ -26,8 +26,11 @@ public class AddressController
         return new ResponseEntity<String>("Get Call Success", HttpStatus.OK);
     }
     @GetMapping("/get/{bookId}")
-    public ResponseEntity<String> getAddressById(@PathVariable("bookId") int bookId) {
-        return new ResponseEntity<String>("Get Call Success for id: " + bookId, HttpStatus.OK);
+    public ResponseEntity<ResponseDTO> getAddressById(@PathVariable("bookId") int bookId) {
+        AddressData addressData = null;
+        addressData = new AddressData(1, new AddressDTO("Deopur Dhule","Dhule","MH",78542187));
+        ResponseDTO respDTO = new ResponseDTO("Get Call Successful", addressData);
+        return new ResponseEntity<ResponseDTO>(respDTO, HttpStatus.OK);
     }
 
     @PostMapping("/createAddress")
