@@ -2,6 +2,8 @@ package com.springbootworkshop.addressbookproject.Controllers;
 
 import com.springbootworkshop.addressbookproject.DTO.AddressDTO;
 import com.springbootworkshop.addressbookproject.DTO.ContactDTO;
+import com.springbootworkshop.addressbookproject.DTO.ResponseDTO;
+import com.springbootworkshop.addressbookproject.Model.ContactData;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -11,17 +13,27 @@ import org.springframework.web.bind.annotation.*;
 public class ContactController
 {
     @GetMapping(value = { "", "/", "/get" })
-    public ResponseEntity<String> getAddressBookData() {
-        return new ResponseEntity<String>("Get Call Success", HttpStatus.OK);
+    public ResponseEntity<ResponseDTO> getContactData() {
+        ContactData contactData = null;
+        contactData = new ContactData(1,new ContactDTO("Sanket","More","Male",787887787,"sanket@123"));
+        ResponseDTO respDTO = new ResponseDTO("Get Call Successful", contactData);
+        return new ResponseEntity<ResponseDTO>(respDTO, HttpStatus.OK);
     }
 
     @GetMapping(value =  "/getAllContactData" )
-    public ResponseEntity<String> getAllContactData() {
-        return new ResponseEntity<String>("Get Call Success", HttpStatus.OK);
+    public ResponseEntity<ResponseDTO> getAllContactData() {
+        ContactData contactData = null;
+        contactData = new ContactData(1,new ContactDTO("Sanket","More","Male",787887787,"sanket@123"));
+        ResponseDTO respDTO = new ResponseDTO("Get Call Successful", contactData);
+        return new ResponseEntity<ResponseDTO>(respDTO, HttpStatus.OK);
     }
+
     @GetMapping("/get/{bookId}")
-    public ResponseEntity<String> getContactById(@PathVariable("bookId") int bookId) {
-        return new ResponseEntity<String>("Get Call Success for id: " + bookId, HttpStatus.OK);
+    public ResponseEntity<ResponseDTO> getContactById(@PathVariable("bookId") int bookId) {
+        ContactData contactData = null;
+        contactData = new ContactData(1,new ContactDTO("Sanket","More","Male",787887787,"sanket@123"));
+        ResponseDTO respDTO = new ResponseDTO("Get Call Successful", contactData);
+        return new ResponseEntity<ResponseDTO>(respDTO, HttpStatus.OK);
     }
 
     @PostMapping("/createContact")
