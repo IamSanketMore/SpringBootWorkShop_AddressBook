@@ -1,6 +1,8 @@
 package com.springbootworkshop.addressbookproject.DTO;
 
-public class AddressDTO
+import lombok.ToString;
+
+public @ToString class AddressDTO
 {
     public String address;
     public String city;
@@ -12,15 +14,5 @@ public class AddressDTO
         this.city = city;
         this.state = state;
         this.zip = zip;
-    }
-
-    @Override
-    public String toString() {
-        return "AddressDTO{" +
-                "address='" + address + '\'' +
-                ", city='" + city + '\'' +
-                ", state='" + state + '\'' +
-                ", zip=" + zip +
-                '}';
     }
 }
