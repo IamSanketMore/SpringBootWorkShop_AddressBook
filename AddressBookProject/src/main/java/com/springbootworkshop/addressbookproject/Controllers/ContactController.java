@@ -28,7 +28,7 @@ public class ContactController
 
     @GetMapping(value =  "/getAllContactData" )
     public ResponseEntity<ResponseDTO> getAllContactData() {
-        List<ContactData> contactData = iContactService.getContactData();
+        List<ContactData> contactData = iContactService.getAllContactData();
         ResponseDTO respDTO = new ResponseDTO("Get Call Successful", contactData);
         return new ResponseEntity<ResponseDTO>(respDTO, HttpStatus.OK);
     }
@@ -56,7 +56,7 @@ public class ContactController
 
     @DeleteMapping("/deleteContact/{bookId}")
     public ResponseEntity<ResponseDTO> deleteContactData(@PathVariable("bookId") int bookId) {
-        ContactData contactData = iContactService.deleteContactData(bookId);
+        iContactService.deleteContactData(bookId);
         ResponseDTO respDTO = new ResponseDTO("Delete Call Success for id: ", bookId);
         return new ResponseEntity<ResponseDTO>(respDTO, HttpStatus.OK);
     }
