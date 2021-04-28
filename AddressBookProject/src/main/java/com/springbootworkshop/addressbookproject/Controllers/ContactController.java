@@ -49,7 +49,7 @@ public class ContactController
 
     @PutMapping("/updateContact/{bookId}")
     public ResponseEntity<ResponseDTO> updateContactData(@PathVariable("bookId") int bookId,@RequestBody ContactDTO contactDTO) {
-        ContactData contactData = iContactService.updateContactData(1,contactDTO);
+        ContactData contactData = iContactService.updateContactData(bookId,contactDTO);
         ResponseDTO respDTO = new ResponseDTO("Created Contact Data for", contactData);
         return new ResponseEntity<ResponseDTO>(respDTO, HttpStatus.OK);
     }
