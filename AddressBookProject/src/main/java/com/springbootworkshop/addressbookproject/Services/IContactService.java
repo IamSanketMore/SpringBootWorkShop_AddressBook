@@ -12,6 +12,6 @@ public interface IContactService
     ContactData getContactById(int contactId);
     ContactData addContactData(ContactDTO contactDTO);
     ContactData updateContactData(int contactId,ContactDTO contactDTO);
-    ContactData deleteContactData(int contactId);
+    void deleteContactData(int contactId);
 
 }
