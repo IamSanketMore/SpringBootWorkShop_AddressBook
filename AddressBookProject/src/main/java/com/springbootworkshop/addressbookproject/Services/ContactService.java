@@ -5,6 +5,8 @@ import com.springbootworkshop.addressbookproject.Model.ContactData;
 import com.springbootworkshop.addressbookproject.exceptions.ContactException;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -33,6 +35,7 @@ public class ContactService implements IContactService
     public ContactData addContactData(ContactDTO contactDTO) {
         ContactData contactData = null;
         contactData = new ContactData(contactDataList.size()+1,contactDTO);
+        contactData.setCreatedTimeStamp(LocalDateTime.now());
         contactDataList.add(contactData);
         return contactData;
     }
@@ -45,6 +48,7 @@ public class ContactService implements IContactService
         contactData.setGender(contactDTO.gender);
         contactData.setMobileNumber(contactDTO.mobileNumber);
         contactData.setEmailID(contactDTO.emailID);
+        contactData.setUpdatedTimeStamp(LocalDateTime.now());
         contactDataList.set(contactId-1,contactData);
         return contactData;
     }
