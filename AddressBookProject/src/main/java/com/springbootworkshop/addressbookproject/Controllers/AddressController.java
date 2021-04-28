@@ -47,16 +47,16 @@ public class AddressController
         return new ResponseEntity<ResponseDTO>(respDTO, HttpStatus.OK);
     }
 
-    @PutMapping("/updateAddress")
-    public ResponseEntity<ResponseDTO> updateAddressData(@RequestBody AddressDTO addressDTO) {
-        AddressData addressData = iAddressService.updateAddressData(1, addressDTO);
+    @PutMapping("/updateAddress/{bookId}")
+    public ResponseEntity<ResponseDTO> updateAddressData(@PathVariable("bookId") int bookId,@RequestBody AddressDTO addressDTO) {
+        AddressData addressData = iAddressService.updateAddressData(bookId, addressDTO);
         ResponseDTO respDTO = new ResponseDTO("Updated Address Data for: ", addressData);
         return new ResponseEntity<ResponseDTO>(respDTO, HttpStatus.OK);
     }
 
     @DeleteMapping("/deleteAddress/{bookId}")
     public ResponseEntity<ResponseDTO> deleteAddressData(@PathVariable("bookId") int bookId) {
-        AddressData addressData = iAddressService.deleteAddressData(1);
+        iAddressService.deleteAddressData(bookId);
         ResponseDTO respDTO = new ResponseDTO("Delete Call Success for id: ", bookId);
         return new ResponseEntity<ResponseDTO>(respDTO, HttpStatus.OK);
     }
