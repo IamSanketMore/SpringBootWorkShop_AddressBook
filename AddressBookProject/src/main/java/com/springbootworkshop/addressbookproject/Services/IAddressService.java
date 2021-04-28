@@ -8,8 +8,8 @@ public interface IAddressService
 {
     List<AddressData> getAddressData();
     List<AddressData> getAllAddressData();
-    AddressData getAddressById(int contactId);
+    AddressData getAddressById(int addressId);
     AddressData addAddressData(AddressDTO addressDTO);
-    AddressData updateAddressData(int contactId,AddressDTO addressDTO);
-    AddressData deleteAddressData(int contactId);
+    AddressData updateAddressData(int addressId,AddressDTO addressDTO);
+    void deleteAddressData(int addressId);
 }
