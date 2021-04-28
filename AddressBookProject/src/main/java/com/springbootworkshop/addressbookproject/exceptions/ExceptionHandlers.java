@@ -32,4 +32,11 @@ public class ExceptionHandlers
 
     return new ResponseEntity<ResponseDTO>(response, HttpStatus.BAD_REQUEST);
     }
+
+    @ExceptionHandler(ContactException.class)
+    public ResponseEntity<ResponseDTO> handleEmployeeePayrollException(ContactException exception)
+    {
+        ResponseDTO responseDTO = new ResponseDTO("Exception While processing  REST  REquest",exception.getMessage());
+        return new ResponseEntity<ResponseDTO>(responseDTO, HttpStatus.BAD_REQUEST);
+    }
 }

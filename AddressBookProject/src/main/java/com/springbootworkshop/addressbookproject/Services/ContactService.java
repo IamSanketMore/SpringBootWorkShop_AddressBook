@@ -2,6 +2,7 @@ package com.springbootworkshop.addressbookproject.Services;
 
 import com.springbootworkshop.addressbookproject.DTO.ContactDTO;
 import com.springbootworkshop.addressbookproject.Model.ContactData;
+import com.springbootworkshop.addressbookproject.exceptions.ContactException;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -23,7 +24,10 @@ public class ContactService implements IContactService
 
     @Override
     public ContactData getContactById(int contactId) {
-        return contactDataList.get(contactId-1);
+        return contactDataList.stream()
+                .filter(empData -> empData.getContactId() == contactId)
+                .findFirst()
+                .orElseThrow(() -> new ContactException("Employee Not Found"));
     }
 
     @Override
