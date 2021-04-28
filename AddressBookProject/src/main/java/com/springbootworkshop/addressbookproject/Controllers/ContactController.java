@@ -10,6 +10,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.List;
 
 @RestController
@@ -41,14 +42,14 @@ public class ContactController
     }
 
     @PostMapping("/createContact")
-    public ResponseEntity<ResponseDTO> addContactData(@RequestBody ContactDTO contactDTO ) {
+    public ResponseEntity<ResponseDTO> addContactData(@Valid @RequestBody ContactDTO contactDTO ) {
         ContactData contactData = iContactService.addContactData(contactDTO);
         ResponseDTO respDTO = new ResponseDTO("Created Contact Data for", contactData);
         return new ResponseEntity<ResponseDTO>(respDTO, HttpStatus.OK);
     }
 
     @PutMapping("/updateContact/{bookId}")
-    public ResponseEntity<ResponseDTO> updateContactData(@PathVariable("bookId") int bookId,@RequestBody ContactDTO contactDTO) {
+    public ResponseEntity<ResponseDTO> updateContactData(@PathVariable("bookId") int bookId,@Valid @RequestBody ContactDTO contactDTO) {
         ContactData contactData = iContactService.updateContactData(bookId,contactDTO);
         ResponseDTO respDTO = new ResponseDTO("Created Contact Data for", contactData);
         return new ResponseEntity<ResponseDTO>(respDTO, HttpStatus.OK);
