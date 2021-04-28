@@ -14,7 +14,6 @@ public class AddressService implements IAddressService
     List<AddressData> addressDataList = new ArrayList<AddressData>();
     @Override
     public List<AddressData> getAddressData() {
-        addressDataList.add(new AddressData(1, new AddressDTO("Deopur Dhule","Dhule","MH",78542187)));
         return addressDataList;
     }
 
@@ -24,25 +23,31 @@ public class AddressService implements IAddressService
     }
 
     @Override
-    public AddressData getAddressById(int contactId) {
-        AddressData addressData = new AddressData(1, new AddressDTO("Deopur Dhule","Dhule","MH",78542187));
-        return addressData;
+    public AddressData getAddressById(int addressId) {
+       return  addressDataList.get(addressId-1);
     }
 
     @Override
     public AddressData addAddressData(AddressDTO addressDTO) {
-        AddressData addressData = new AddressData(1, addressDTO);
+        AddressData addressData = null;
+        addressData = new AddressData(addressDataList.size()+1, addressDTO);
+        addressDataList.add(addressData);
         return addressData;
     }
 
     @Override
-    public AddressData updateAddressData(int contactId, AddressDTO addressDTO) {
-        AddressData addressData = new AddressData(1, addressDTO);
+    public AddressData updateAddressData(int addressId, AddressDTO addressDTO) {
+        AddressData addressData = this.getAddressById(addressId);
+        addressData.setAddress(addressDTO.address);
+        addressData.setCity(addressDTO.city);
+        addressData.setState(addressDTO.state);
+        addressData.setZip(addressDTO.zip);
+        addressDataList.set(addressId-1,addressData);
         return addressData;
     }
 
     @Override
-    public AddressData deleteAddressData(int contactId) {
-        return null;
+    public void deleteAddressData(int  addressId) {
+      addressDataList.remove(addressId-1);
     }
 }
