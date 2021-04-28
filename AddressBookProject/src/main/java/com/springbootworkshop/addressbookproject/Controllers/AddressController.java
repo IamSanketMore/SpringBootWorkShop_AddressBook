@@ -9,6 +9,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.List;
 
 @RestController
@@ -41,14 +42,14 @@ public class AddressController
     }
 
     @PostMapping("/createAddress")
-    public ResponseEntity<ResponseDTO> addAddressData(@RequestBody AddressDTO addressDTO) {
+    public ResponseEntity<ResponseDTO> addAddressData(@Valid @RequestBody AddressDTO addressDTO) {
         AddressData addressData = iAddressService.addAddressData(addressDTO);
         ResponseDTO respDTO = new ResponseDTO("Created Contact Data for: ", addressData);
         return new ResponseEntity<ResponseDTO>(respDTO, HttpStatus.OK);
     }
 
     @PutMapping("/updateAddress/{bookId}")
-    public ResponseEntity<ResponseDTO> updateAddressData(@PathVariable("bookId") int bookId,@RequestBody AddressDTO addressDTO) {
+    public ResponseEntity<ResponseDTO> updateAddressData(@PathVariable("bookId") int bookId,@Valid @RequestBody AddressDTO addressDTO) {
         AddressData addressData = iAddressService.updateAddressData(bookId, addressDTO);
         ResponseDTO respDTO = new ResponseDTO("Updated Address Data for: ", addressData);
         return new ResponseEntity<ResponseDTO>(respDTO, HttpStatus.OK);
