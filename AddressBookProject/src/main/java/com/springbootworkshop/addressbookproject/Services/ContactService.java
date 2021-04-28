@@ -10,39 +10,44 @@ import java.util.List;
 @Service
 public class ContactService implements IContactService
 {
-    List<ContactData> contactDataListList = new ArrayList<ContactData>();
+    List<ContactData> contactDataList = new ArrayList<ContactData>();
     @Override
     public List<ContactData> getContactData() {
-
-        contactDataListList.add(new ContactData(1, new ContactDTO("Sanket", "More","Male",425005,"Sanket@123")));
-        return contactDataListList;
+        return contactDataList;
     }
 
     @Override
     public List<ContactData> getAllContactData() {
-        return contactDataListList;
+        return contactDataList;
     }
 
     @Override
     public ContactData getContactById(int contactId) {
-        ContactData contactData = new ContactData(1,new ContactDTO("Sanket", "More","Male",425005,"Sanket@123"));
-        return contactData;
+        return contactDataList.get(contactId-1);
     }
 
     @Override
     public ContactData addContactData(ContactDTO contactDTO) {
-        ContactData contactData = new ContactData(1,contactDTO);
+        ContactData contactData = null;
+        contactData = new ContactData(contactDataList.size()+1,contactDTO);
+        contactDataList.add(contactData);
         return contactData;
     }
 
     @Override
     public ContactData updateContactData(int contactId, ContactDTO contactDTO) {
-        ContactData contactData = new ContactData(1,contactDTO);
+        ContactData contactData = this.getContactById(contactId);
+        contactData.setFirstName(contactDTO.firstName);
+        contactData.setLastName(contactDTO.lastName);
+        contactData.setGender(contactDTO.gender);
+        contactData.setMobileNumber(contactDTO.mobileNumber);
+        contactData.setEmailID(contactDTO.emailID);
+        contactDataList.set(contactId-1,contactData);
         return contactData;
     }
 
     @Override
-    public ContactData deleteContactData(int contactId) {
-        return null;
+    public void deleteContactData(int contactId) {
+        contactDataList.remove(contactId-1);
     }
 }
