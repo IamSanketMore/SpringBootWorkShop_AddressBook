@@ -34,7 +34,14 @@ public class ExceptionHandlers
     }
 
     @ExceptionHandler(ContactException.class)
-    public ResponseEntity<ResponseDTO> handleEmployeeePayrollException(ContactException exception)
+    public ResponseEntity<ResponseDTO> handleContactException(ContactException exception)
+    {
+        ResponseDTO responseDTO = new ResponseDTO("Exception While processing  REST  REquest",exception.getMessage());
+        return new ResponseEntity<ResponseDTO>(responseDTO, HttpStatus.BAD_REQUEST);
+    }
+
+    @ExceptionHandler(AddressException.class)
+    public ResponseEntity<ResponseDTO> handleAddressException(AddressException exception)
     {
         ResponseDTO responseDTO = new ResponseDTO("Exception While processing  REST  REquest",exception.getMessage());
         return new ResponseEntity<ResponseDTO>(responseDTO, HttpStatus.BAD_REQUEST);

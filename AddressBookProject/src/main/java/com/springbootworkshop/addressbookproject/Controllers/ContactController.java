@@ -36,7 +36,7 @@ public class ContactController
 
     @GetMapping("/get/{bookId}")
     public ResponseEntity<ResponseDTO> getContactById(@PathVariable("bookId") int bookId) {
-        List<ContactData> contactData = iContactService.getContactData();
+        ContactData contactData = iContactService.getContactById(bookId);
         ResponseDTO respDTO = new ResponseDTO("Get Call Successful", contactData);
         return new ResponseEntity<ResponseDTO>(respDTO, HttpStatus.OK);
     }

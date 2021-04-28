@@ -3,6 +3,7 @@ package com.springbootworkshop.addressbookproject.Services;
 import com.springbootworkshop.addressbookproject.DTO.AddressDTO;
 import com.springbootworkshop.addressbookproject.Model.AddressData;
 import com.springbootworkshop.addressbookproject.Model.ContactData;
+import com.springbootworkshop.addressbookproject.exceptions.AddressException;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -24,7 +25,9 @@ public class AddressService implements IAddressService
 
     @Override
     public AddressData getAddressById(int addressId) {
-       return  addressDataList.get(addressId-1);
+       return  addressDataList.stream()
+               .filter(addressData -> addressData.getAddressId() == addressId)
+               .findFirst().orElseThrow(() -> new AddressException("Address Id Not Found"));
     }
 
     @Override

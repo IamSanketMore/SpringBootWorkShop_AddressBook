@@ -25,9 +25,8 @@ public class ContactService implements IContactService
     @Override
     public ContactData getContactById(int contactId) {
         return contactDataList.stream()
-                .filter(empData -> empData.getContactId() == contactId)
-                .findFirst()
-                .orElseThrow(() -> new ContactException("Employee Not Found"));
+                .filter(contactData -> contactData.getContactId() == contactId)
+                .findFirst().orElseThrow(() -> new ContactException("Contact ID Not Found"));
     }
 
     @Override
