@@ -1,8 +1,10 @@
 package com.springbootworkshop.addressbookproject.DTO;
 
+import lombok.ToString;
+
 import javax.validation.constraints.Email;
 
-public class ContactDTO
+public @ToString class ContactDTO
 {
     public String firstName;
     public String lastName;
@@ -17,16 +19,5 @@ public class ContactDTO
         this.gender = gender;
         this.mobileNumber = mobileNumber;
         this.emailID = emailID;
-    }
-
-    @Override
-    public String toString() {
-        return "ContactDTO{" +
-                "firstName='" + firstName + '\'' +
-                ", lastName='" + lastName + '\'' +
-                ", gender='" + gender + '\'' +
-                ", mobileNumber=" + mobileNumber +
-                ", emailID='" + emailID + '\'' +
-                '}';
     }
 }
