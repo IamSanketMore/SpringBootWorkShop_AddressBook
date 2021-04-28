@@ -8,7 +8,8 @@ public @Data class ContactData {
     private String firstName;
     private String lastName;
     private String gender;
-    private int mobileNumber;
+    private String
+            mobileNumber;
     private String emailID;
 
 

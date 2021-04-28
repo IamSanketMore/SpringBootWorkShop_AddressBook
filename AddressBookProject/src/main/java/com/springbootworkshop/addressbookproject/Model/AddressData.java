@@ -9,7 +9,7 @@ public @Data class AddressData
     private String address;
     private String city;
     private String state;
-    private int zip;
+    private String zip;
 
     public AddressData(int addressId, AddressDTO addressDTO) {
         super();
