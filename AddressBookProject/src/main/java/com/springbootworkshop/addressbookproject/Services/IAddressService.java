@@ -13,4 +13,5 @@ public interface IAddressService
     AddressData addAddressData(AddressDTO addressDTO);
     AddressData updateAddressData(UUID addressId,AddressDTO addressDTO);
     void deleteAddressData(UUID addressId);
+    List<AddressData> sortBycityName();
 }

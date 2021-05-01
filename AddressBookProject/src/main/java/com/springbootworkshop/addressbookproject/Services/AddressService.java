@@ -6,6 +6,7 @@ import com.springbootworkshop.addressbookproject.Model.ContactData;
 import com.springbootworkshop.addressbookproject.exceptions.AddressException;
 import com.springbootworkshop.addressbookproject.repository.AddressRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
@@ -58,5 +59,10 @@ public class AddressService implements IAddressService
     public void deleteAddressData(UUID  addressId) {
       AddressData addressData = this.getAddressById(addressId);
       addressRepository.delete(addressData);
+    }
+
+    @Override
+    public List<AddressData> sortBycityName() {
+        return addressRepository.findAll((Sort.by("city").ascending()));
     }
 }

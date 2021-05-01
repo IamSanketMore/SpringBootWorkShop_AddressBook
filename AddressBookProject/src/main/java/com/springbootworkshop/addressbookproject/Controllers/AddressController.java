@@ -62,4 +62,10 @@ public class AddressController
         ResponseDTO respDTO = new ResponseDTO("Delete Call Success for id: ", bookId);
         return new ResponseEntity<ResponseDTO>(respDTO, HttpStatus.OK);
     }
+    @GetMapping(value = { "/sortByCity" })
+    public ResponseEntity<ResponseDTO> sortBycityName() {
+        List<AddressData> addressData =iAddressService.sortBycityName();
+        ResponseDTO responseDTO = new ResponseDTO("Successfull got the data", addressData);
+        return new ResponseEntity<ResponseDTO>(responseDTO, HttpStatus.OK);
+    }
 }
