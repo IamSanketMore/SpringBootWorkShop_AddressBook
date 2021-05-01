@@ -21,7 +21,7 @@ public class ExceptionHandlers
         List<ObjectError> errorList = exception.getBindingResult().getAllErrors();
         List<String> errMsg = errorList.stream().map(objectError -> objectError.getDefaultMessage()).collect(Collectors.toList());
 
-        ResponseDTO responseDTO = new ResponseDTO("Exception While processing  REST  REquest",errMsg);
+        ResponseDTO responseDTO = new ResponseDTO("Exception Occured At passing Argument",errMsg);
         return new ResponseEntity<ResponseDTO>(responseDTO, HttpStatus.BAD_REQUEST);
     }
     @ExceptionHandler({HttpMessageNotReadableException.class})
@@ -36,14 +36,14 @@ public class ExceptionHandlers
     @ExceptionHandler(ContactException.class)
     public ResponseEntity<ResponseDTO> handleContactException(ContactException exception)
     {
-        ResponseDTO responseDTO = new ResponseDTO("Exception While processing  REST  REquest",exception.getMessage());
+        ResponseDTO responseDTO = new ResponseDTO("Exception Occured in Contact Class",exception.getMessage());
         return new ResponseEntity<ResponseDTO>(responseDTO, HttpStatus.BAD_REQUEST);
     }
 
     @ExceptionHandler(AddressException.class)
     public ResponseEntity<ResponseDTO> handleAddressException(AddressException exception)
     {
-        ResponseDTO responseDTO = new ResponseDTO("Exception While processing  REST  REquest",exception.getMessage());
+        ResponseDTO responseDTO = new ResponseDTO("Exception Occured in Address Class",exception.getMessage());
         return new ResponseEntity<ResponseDTO>(responseDTO, HttpStatus.BAD_REQUEST);
     }
 }
