@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 import java.util.List;
+import java.util.UUID;
 
 @RestController
 @RequestMapping("/contact")
@@ -35,7 +36,7 @@ public class ContactController
     }
 
     @GetMapping("/get/{bookId}")
-    public ResponseEntity<ResponseDTO> getContactById(@PathVariable("bookId") int bookId) {
+    public ResponseEntity<ResponseDTO> getContactById(@PathVariable("bookId") UUID bookId) {
         ContactData contactData = iContactService.getContactById(bookId);
         ResponseDTO respDTO = new ResponseDTO("Get Call Successful", contactData);
         return new ResponseEntity<ResponseDTO>(respDTO, HttpStatus.OK);
@@ -49,14 +50,14 @@ public class ContactController
     }
 
     @PutMapping("/updateContact/{bookId}")
-    public ResponseEntity<ResponseDTO> updateContactData(@PathVariable("bookId") int bookId,@Valid @RequestBody ContactDTO contactDTO) {
+    public ResponseEntity<ResponseDTO> updateContactData(@PathVariable("bookId") UUID bookId, @Valid @RequestBody ContactDTO contactDTO) {
         ContactData contactData = iContactService.updateContactData(bookId,contactDTO);
         ResponseDTO respDTO = new ResponseDTO("Created Contact Data for", contactData);
         return new ResponseEntity<ResponseDTO>(respDTO, HttpStatus.OK);
     }
 
     @DeleteMapping("/deleteContact/{bookId}")
-    public ResponseEntity<ResponseDTO> deleteContactData(@PathVariable("bookId") int bookId) {
+    public ResponseEntity<ResponseDTO> deleteContactData(@PathVariable("bookId") UUID bookId) {
         iContactService.deleteContactData(bookId);
         ResponseDTO respDTO = new ResponseDTO("Delete Call Success for id: ", bookId);
         return new ResponseEntity<ResponseDTO>(respDTO, HttpStatus.OK);

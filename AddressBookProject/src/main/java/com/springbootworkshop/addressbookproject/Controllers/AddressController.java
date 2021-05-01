@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 import java.util.List;
+import java.util.UUID;
 
 @RestController
 @RequestMapping("/address")
@@ -35,7 +36,7 @@ public class AddressController
 
     }
     @GetMapping("/get/{bookId}")
-    public ResponseEntity<ResponseDTO> getAddressById(@PathVariable("bookId") int bookId) {
+    public ResponseEntity<ResponseDTO> getAddressById(@PathVariable("bookId") UUID bookId) {
         AddressData addressData  = iAddressService.getAddressById(bookId);
         ResponseDTO respDTO = new ResponseDTO("Get Call Successful", addressData);
         return new ResponseEntity<ResponseDTO>(respDTO, HttpStatus.OK);
@@ -49,14 +50,14 @@ public class AddressController
     }
 
     @PutMapping("/updateAddress/{bookId}")
-    public ResponseEntity<ResponseDTO> updateAddressData(@PathVariable("bookId") int bookId,@Valid @RequestBody AddressDTO addressDTO) {
+    public ResponseEntity<ResponseDTO> updateAddressData(@PathVariable("bookId") UUID bookId,@Valid @RequestBody AddressDTO addressDTO) {
         AddressData addressData = iAddressService.updateAddressData(bookId, addressDTO);
         ResponseDTO respDTO = new ResponseDTO("Updated Address Data for: ", addressData);
         return new ResponseEntity<ResponseDTO>(respDTO, HttpStatus.OK);
     }
 
     @DeleteMapping("/deleteAddress/{bookId}")
-    public ResponseEntity<ResponseDTO> deleteAddressData(@PathVariable("bookId") int bookId) {
+    public ResponseEntity<ResponseDTO> deleteAddressData(@PathVariable("bookId") UUID bookId) {
         iAddressService.deleteAddressData(bookId);
         ResponseDTO respDTO = new ResponseDTO("Delete Call Success for id: ", bookId);
         return new ResponseEntity<ResponseDTO>(respDTO, HttpStatus.OK);
