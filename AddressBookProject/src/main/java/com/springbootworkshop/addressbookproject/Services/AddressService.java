@@ -65,4 +65,9 @@ public class AddressService implements IAddressService
     public List<AddressData> sortBycityName() {
         return addressRepository.findAll((Sort.by("city").ascending()));
     }
+
+    @Override
+    public List<AddressData> sortBystateName() {
+        return  addressRepository.findAll((Sort.by("state").ascending()));
+    }
 }

@@ -68,4 +68,10 @@ public class AddressController
         ResponseDTO responseDTO = new ResponseDTO("Successfull got the data", addressData);
         return new ResponseEntity<ResponseDTO>(responseDTO, HttpStatus.OK);
     }
+    @GetMapping(value = { "/sortByState" })
+    public ResponseEntity<ResponseDTO> sortBystateName() {
+        List<AddressData> addressData =iAddressService.sortBystateName();
+        ResponseDTO responseDTO = new ResponseDTO("Successfull got the data", addressData);
+        return new ResponseEntity<ResponseDTO>(responseDTO, HttpStatus.OK);
+    }
 }
