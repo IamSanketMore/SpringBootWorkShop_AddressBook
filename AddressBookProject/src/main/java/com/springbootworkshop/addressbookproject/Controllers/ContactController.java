@@ -5,6 +5,7 @@ import com.springbootworkshop.addressbookproject.DTO.ContactDTO;
 import com.springbootworkshop.addressbookproject.DTO.ResponseDTO;
 import com.springbootworkshop.addressbookproject.Model.ContactData;
 import com.springbootworkshop.addressbookproject.Services.IContactService;
+import io.swagger.annotations.Api;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -15,7 +16,8 @@ import java.util.List;
 import java.util.UUID;
 
 @RestController
-@RequestMapping("/contact")
+@RequestMapping("/AddressBook/contact")
+@Api(value = "Contact-Controller",description = "Perform API Operation on the Contact fields ")
 public class ContactController
 {
     @Autowired

@@ -4,6 +4,7 @@ import com.springbootworkshop.addressbookproject.DTO.AddressDTO;
 import com.springbootworkshop.addressbookproject.DTO.ResponseDTO;
 import com.springbootworkshop.addressbookproject.Model.AddressData;
 import com.springbootworkshop.addressbookproject.Services.IAddressService;
+import io.swagger.annotations.Api;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -14,7 +15,8 @@ import java.util.List;
 import java.util.UUID;
 
 @RestController
-@RequestMapping("/address")
+@RequestMapping("/AddressBook/address")
+@Api(value = "Address-Controller",description = "Perform API Operation on the ADDRESS fields ")
 public class AddressController
 {
     @Autowired
