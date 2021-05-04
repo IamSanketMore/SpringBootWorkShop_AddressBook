@@ -1,16 +1,15 @@
-package com.springbootworkshop.addressbookproject.Controllers;
+package com.springbootworkshop.addressbookproject.controllers;
 
-import com.springbootworkshop.addressbookproject.DTO.AddressDTO;
 import com.springbootworkshop.addressbookproject.DTO.ContactDTO;
 import com.springbootworkshop.addressbookproject.DTO.ResponseDTO;
-import com.springbootworkshop.addressbookproject.Model.ContactData;
-import com.springbootworkshop.addressbookproject.Services.IContactService;
+import com.springbootworkshop.addressbookproject.model.Contact;
+import com.springbootworkshop.addressbookproject.services.IAddressService;
+import com.springbootworkshop.addressbookproject.services.IContactService;
 import io.swagger.annotations.Api;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
 import javax.validation.Valid;
 import java.util.List;
 import java.util.UUID;
@@ -22,46 +21,48 @@ public class ContactController
 {
     @Autowired
     private IContactService iContactService;
+    @Autowired
+    private IAddressService iAddressService;
 
     @GetMapping(value = { "", "/", "/get" })
     public ResponseEntity<ResponseDTO> getContactData() {
-        List<ContactData> contactData = iContactService.getContactData();
-        ResponseDTO respDTO = new ResponseDTO("Get Call Successful", contactData);
+        List<Contact> contactData = iContactService.getContactData();
+        ResponseDTO respDTO = new ResponseDTO(" Get Contact SuccessFully ", contactData);
         return new ResponseEntity<ResponseDTO>(respDTO, HttpStatus.OK);
     }
 
-    @GetMapping(value =  "/getAllContactData" )
+    @GetMapping(value =  "/getAll" )
     public ResponseEntity<ResponseDTO> getAllContactData() {
-        List<ContactData> contactData = iContactService.getAllContactData();
-        ResponseDTO respDTO = new ResponseDTO("Get Call Successful", contactData);
+        List<Contact> contactData = iContactService.getAllContactData();
+        ResponseDTO respDTO = new ResponseDTO(" Get All Contact ", contactData);
         return new ResponseEntity<ResponseDTO>(respDTO, HttpStatus.OK);
     }
 
     @GetMapping("/get/{bookId}")
     public ResponseEntity<ResponseDTO> getContactById(@PathVariable("bookId") UUID bookId) {
-        ContactData contactData = iContactService.getContactById(bookId);
-        ResponseDTO respDTO = new ResponseDTO("Get Call Successful", contactData);
+        Contact contact = iContactService.getContactById(bookId);
+        ResponseDTO respDTO = new ResponseDTO(" Get a Contact By Id", contact);
         return new ResponseEntity<ResponseDTO>(respDTO, HttpStatus.OK);
     }
 
     @PostMapping("/createContact")
     public ResponseEntity<ResponseDTO> addContactData(@Valid @RequestBody ContactDTO contactDTO ) {
-        ContactData contactData = iContactService.addContactData(contactDTO);
-        ResponseDTO respDTO = new ResponseDTO("Created Contact Data for", contactData);
+        Contact contact = iContactService.addContactData(contactDTO);
+        ResponseDTO respDTO = new ResponseDTO(" Contact Created Successfully : ", contact);
         return new ResponseEntity<ResponseDTO>(respDTO, HttpStatus.OK);
     }
 
     @PutMapping("/updateContact/{bookId}")
     public ResponseEntity<ResponseDTO> updateContactData(@PathVariable("bookId") UUID bookId, @Valid @RequestBody ContactDTO contactDTO) {
-        ContactData contactData = iContactService.updateContactData(bookId,contactDTO);
-        ResponseDTO respDTO = new ResponseDTO("Created Contact Data for", contactData);
+        Contact contact = iContactService.updateContactData(bookId,contactDTO);
+        ResponseDTO respDTO = new ResponseDTO(" Contact Updated Successfully : ", contact);
         return new ResponseEntity<ResponseDTO>(respDTO, HttpStatus.OK);
     }
 
     @DeleteMapping("/deleteContact/{bookId}")
     public ResponseEntity<ResponseDTO> deleteContactData(@PathVariable("bookId") UUID bookId) {
         iContactService.deleteContactData(bookId);
-        ResponseDTO respDTO = new ResponseDTO("Delete Call Success for id: ", bookId);
+        ResponseDTO respDTO = new ResponseDTO(" Contact Deleted Successfully : ", bookId);
         return new ResponseEntity<ResponseDTO>(respDTO, HttpStatus.OK);
     }
 }

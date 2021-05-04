@@ -1,11 +1,13 @@
 package com.springbootworkshop.addressbookproject.DTO;
 
+import lombok.AllArgsConstructor;
+import lombok.Data;
 import lombok.ToString;
-
-import javax.validation.constraints.Email;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
 
+@AllArgsConstructor
+@Data
 public @ToString class ContactDTO
 {
     @Pattern(regexp = "^[A-Z]{1}[a-zA-Z\\s]{2,}$" , message = " !!! FirstName Is Invalid !!! " +
@@ -26,12 +28,4 @@ public @ToString class ContactDTO
     @NotNull
     @Pattern(regexp = "^[a-zA-Z]{1,}@[a-zA-Z]{2,6}[.][a-zA-Z]{2,4}$",message = "Email is Invalid")
     public String emailID;
-
-    public ContactDTO(String firstName, String lastName, String gender, String mobileNumber, String emailID) {
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.gender = gender;
-        this.mobileNumber = mobileNumber;
-        this.emailID = emailID;
-    }
 }

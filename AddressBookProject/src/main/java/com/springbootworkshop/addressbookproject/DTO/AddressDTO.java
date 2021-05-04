@@ -1,14 +1,16 @@
 package com.springbootworkshop.addressbookproject.DTO;
 
+import lombok.AllArgsConstructor;
 import lombok.ToString;
-
 import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
 
-public @ToString class AddressDTO
+@AllArgsConstructor
+@ToString
+public class AddressDTO
 {
+
     @NotBlank
     public String address;
 
@@ -24,10 +26,4 @@ public @ToString class AddressDTO
     @Pattern(regexp = "^[1-9]{1}[0-9]{5}$",message = "!!!Invalid Zip Code!!!")
     public String zip;
 
-    public AddressDTO(String address, String city, String state, String zip) {
-        this.address = address;
-        this.city = city;
-        this.state = state;
-        this.zip = zip;
-    }
 }

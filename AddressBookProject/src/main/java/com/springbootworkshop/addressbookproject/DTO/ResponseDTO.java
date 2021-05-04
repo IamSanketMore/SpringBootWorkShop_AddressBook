@@ -2,7 +2,8 @@ package com.springbootworkshop.addressbookproject.DTO;
 
 import lombok.Data;
 
-public @Data class ResponseDTO
+@Data
+public class ResponseDTO
 {
     private String message;
     private Object data;

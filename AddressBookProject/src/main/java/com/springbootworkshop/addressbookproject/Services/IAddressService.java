@@ -1,19 +1,19 @@
-package com.springbootworkshop.addressbookproject.Services;
+package com.springbootworkshop.addressbookproject.services;
 
 import com.springbootworkshop.addressbookproject.DTO.AddressDTO;
-import com.springbootworkshop.addressbookproject.Model.AddressData;
+import com.springbootworkshop.addressbookproject.model.Address;
 import java.util.List;
 import java.util.UUID;
 
 public interface IAddressService
 {
-    List<AddressData> getAddressData();
-    List<AddressData> getAllAddressData();
-    AddressData getAddressById(UUID addressId);
-    AddressData addAddressData(AddressDTO addressDTO);
-    AddressData updateAddressData(UUID addressId,AddressDTO addressDTO);
+    List<Address> getAddressData();
+    List<Address> getAllAddressData();
+    Address getAddressById(UUID addressId);
+    Address addAddressData(AddressDTO addressDTO);
+    Address updateAddressData(UUID addressId, AddressDTO addressDTO);
     void deleteAddressData(UUID addressId);
-    List<AddressData> sortBycityName();
+    List<Address> sortBycityName();
 
-    List<AddressData> sortBystateName();
+    List<Address> sortBystateName();
 }
