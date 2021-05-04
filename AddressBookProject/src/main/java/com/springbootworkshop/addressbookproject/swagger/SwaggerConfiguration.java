@@ -16,7 +16,7 @@ public class SwaggerConfiguration {
     @Bean
     public Docket swaggerSettingsApi() {
         return new Docket(DocumentationType.SWAGGER_2).apiInfo(apiInfo()).select()
-                .apis(RequestHandlerSelectors.basePackage("com.springbootworkshop.addressbookproject.Controllers"))
+                .apis(RequestHandlerSelectors.basePackage("com.springbootworkshop.addressbookproject.controllers"))
                 .paths(regex("/AddressBook.*"))
                 .build();
     }
