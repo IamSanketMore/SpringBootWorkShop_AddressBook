@@ -34,8 +34,8 @@ public class Contact
 //            inverseJoinColumns = {@JoinColumn(name = "address_id")})
 //    private Address address;
 
-    @OneToMany(cascade = CascadeType.ALL)
-    @JoinColumn(name = "contact_fk_id")
+    @OneToMany(cascade = CascadeType.ALL,mappedBy = "contact")
+    //@JoinColumn(name = "contact_fk_id")
     private List<Address> address;
 
     public Contact() {

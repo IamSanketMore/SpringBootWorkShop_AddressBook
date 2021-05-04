@@ -70,4 +70,5 @@ public class AddressService implements IAddressService
     public List<Address> sortBystateName() {
         return  addressRepository.findAll((Sort.by("state").ascending()));
     }
+
 }

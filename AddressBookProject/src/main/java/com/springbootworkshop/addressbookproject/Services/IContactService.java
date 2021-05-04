@@ -16,4 +16,5 @@ public interface IContactService
     void deleteContactData(UUID contactId);
 
     List<Address>  addAllAddressToContact(String contactId, String addressId);
+    Contact  addContactToAddress(String contactId, String addressId);
 }

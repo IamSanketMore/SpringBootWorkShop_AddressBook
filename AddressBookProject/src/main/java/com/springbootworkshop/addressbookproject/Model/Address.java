@@ -29,6 +29,10 @@ public class Address
 //    @JsonIgnore
 //    private Contact contact;
 
+    @ManyToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "contact_id")
+    @JsonIgnore
+    private Contact contact;
     public Address(AddressDTO addressDTO) {
         super();
 

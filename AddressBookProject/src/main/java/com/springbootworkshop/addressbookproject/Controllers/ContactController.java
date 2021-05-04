@@ -72,4 +72,12 @@ public class ContactController
         return new ResponseEntity<ResponseDTO>(responseDTO,HttpStatus.OK);
 
     }
+
+    @GetMapping("/ManyToOne")
+    public ResponseEntity<ResponseDTO> addContactToAddress( @RequestParam ("contactId") String contactId,@RequestParam ("addressId") String addressId) {
+        ResponseDTO responseDTO = new ResponseDTO("Created New Contact!",
+                iContactService.addContactToAddress(contactId, addressId));
+        return new ResponseEntity<ResponseDTO>(responseDTO,HttpStatus.OK);
+
+    }
 }
