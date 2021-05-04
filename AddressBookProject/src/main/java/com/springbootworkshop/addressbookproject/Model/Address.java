@@ -1,5 +1,6 @@
 package com.springbootworkshop.addressbookproject.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.springbootworkshop.addressbookproject.DTO.AddressDTO;
 import lombok.Data;
 import org.hibernate.annotations.GenericGenerator;
@@ -23,6 +24,10 @@ public class Address
     private String zip;
     private LocalDateTime createdTimeStamp;
     private LocalDateTime updatedTimeStamp;
+
+    @OneToOne(cascade = CascadeType.ALL,mappedBy = "address")
+    @JsonIgnore
+    private Contact contact;
 
     public Address(AddressDTO addressDTO) {
         super();
