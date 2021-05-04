@@ -28,4 +28,6 @@ public @ToString class ContactDTO
     @NotNull
     @Pattern(regexp = "^[a-zA-Z]{1,}@[a-zA-Z]{2,6}[.][a-zA-Z]{2,4}$",message = "Email is Invalid")
     public String emailID;
+
+    public String addressId;
 }

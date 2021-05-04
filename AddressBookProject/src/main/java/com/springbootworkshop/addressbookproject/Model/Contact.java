@@ -26,6 +26,10 @@ public class Contact
     private LocalDateTime createdTimeStamp;
     private LocalDateTime updatedTimeStamp;
 
+    @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @JoinColumn(name = "address_id")
+    private Address address;
+
     public Contact() {
 
     }

@@ -1,8 +1,11 @@
 package com.springbootworkshop.addressbookproject.services;
 
 import com.springbootworkshop.addressbookproject.DTO.ContactDTO;
+import com.springbootworkshop.addressbookproject.exceptions.AddressException;
+import com.springbootworkshop.addressbookproject.model.Address;
 import com.springbootworkshop.addressbookproject.model.Contact;
 import com.springbootworkshop.addressbookproject.exceptions.ContactException;
+import com.springbootworkshop.addressbookproject.repository.AddressRepository;
 import com.springbootworkshop.addressbookproject.repository.ContactRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -16,6 +19,9 @@ public class ContactService implements IContactService
 {
     @Autowired
     private ContactRepository contactRepository;
+
+    @Autowired
+    private AddressRepository addressRepository;
 
     @Override
     public List<Contact> getContactData() {
@@ -39,6 +45,9 @@ public class ContactService implements IContactService
     public Contact addContactData(ContactDTO contactDTO) {
         Contact contact = new Contact(contactDTO);
         contact.setCreatedTimeStamp(LocalDateTime.now());
+        Address address = addressRepository.findById(UUID.fromString(contactDTO.addressId))
+                .orElseThrow(()-> new AddressException("details not found!"));
+        contact.setAddress(address);
         return contactRepository.save(contact);
     }
 
