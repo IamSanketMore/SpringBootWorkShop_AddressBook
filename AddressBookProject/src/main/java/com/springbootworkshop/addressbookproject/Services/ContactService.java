@@ -45,9 +45,9 @@ public class ContactService implements IContactService
     public Contact addContactData(ContactDTO contactDTO) {
         Contact contact = new Contact(contactDTO);
         contact.setCreatedTimeStamp(LocalDateTime.now());
-        Address address = addressRepository.findById(UUID.fromString(contactDTO.addressId))
-                .orElseThrow(()-> new AddressException("details not found!"));
-        contact.setAddress(address);
+//        Address address = addressRepository.findById(UUID.fromString(contactDTO.addressId))
+//                .orElseThrow(()-> new AddressException("details not found!"));
+//        contact.setAddress(address);
         return contactRepository.save(contact);
     }
 
@@ -67,5 +67,14 @@ public class ContactService implements IContactService
     public void deleteContactData(UUID contactId) {
         Contact contact = this.getContactById(contactId);
         contactRepository.delete(contact);
+    }
+
+    @Override
+    public List<Address>  addAllAddressToContact(String contactId, String addressId) {
+        Contact contact = contactRepository.findById(UUID.fromString(contactId)).orElseThrow(()-> new AddressException("details not found!"));
+        Address address = addressRepository.findById(UUID.fromString(addressId)).orElseThrow(()-> new AddressException("details not found!"));
+        List<Address> addressList = contact.getAddress();
+        addressList.add(address);
+        return contactRepository.save(contact).getAddress();
     }
 }

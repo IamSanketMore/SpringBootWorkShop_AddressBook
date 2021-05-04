@@ -5,6 +5,7 @@ import lombok.Data;
 import org.hibernate.annotations.GenericGenerator;
 import javax.persistence.*;
 import java.time.LocalDateTime;
+import java.util.List;
 import java.util.UUID;
 
 @Entity
@@ -26,9 +27,16 @@ public class Contact
     private LocalDateTime createdTimeStamp;
     private LocalDateTime updatedTimeStamp;
 
-    @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "address_id")
-    private Address address;
+//    @OneToOne(cascade = CascadeType.ALL)
+//    @JoinColumn(name = "address_id")
+//    @JoinTable(name = "person_details",
+//            joinColumns = {@JoinColumn(name = "contact_id")},
+//            inverseJoinColumns = {@JoinColumn(name = "address_id")})
+//    private Address address;
+
+    @OneToMany(cascade = CascadeType.ALL)
+    @JoinColumn(name = "contact_fk_id")
+    private List<Address> address;
 
     public Contact() {
 

@@ -65,4 +65,11 @@ public class ContactController
         ResponseDTO respDTO = new ResponseDTO(" Contact Deleted Successfully : ", bookId);
         return new ResponseEntity<ResponseDTO>(respDTO, HttpStatus.OK);
     }
+    @GetMapping("/allAddress")
+    public ResponseEntity<ResponseDTO> addAllAddressToContact( @RequestParam ("contactId") String contactId,@RequestParam ("addressId") String addressId) {
+        ResponseDTO responseDTO = new ResponseDTO("Created New Contact!",
+                iContactService.addAllAddressToContact(contactId, addressId));
+        return new ResponseEntity<ResponseDTO>(responseDTO,HttpStatus.OK);
+
+    }
 }

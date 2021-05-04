@@ -25,9 +25,9 @@ public class Address
     private LocalDateTime createdTimeStamp;
     private LocalDateTime updatedTimeStamp;
 
-    @OneToOne(cascade = CascadeType.ALL,mappedBy = "address")
-    @JsonIgnore
-    private Contact contact;
+//    @OneToOne(cascade = CascadeType.ALL,mappedBy = "address")
+//    @JsonIgnore
+//    private Contact contact;
 
     public Address(AddressDTO addressDTO) {
         super();
