@@ -17,4 +17,6 @@ public interface IContactService
 
     List<Address>  addAllAddressToContact(String contactId, String addressId);
     Contact  addContactToAddress(String contactId, String addressId);
+
+   // List<Contact> manytomany(String contactId, String addressId);
 }

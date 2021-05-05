@@ -6,6 +6,7 @@ import lombok.Data;
 import org.hibernate.annotations.GenericGenerator;
 import javax.persistence.*;
 import java.time.LocalDateTime;
+import java.util.List;
 import java.util.UUID;
 
 @Entity
@@ -29,10 +30,13 @@ public class Address
 //    @JsonIgnore
 //    private Contact contact;
 
-    @ManyToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "contact_id")
-    @JsonIgnore
-    private Contact contact;
+//    @ManyToOne(cascade = CascadeType.ALL)
+//    @JoinColumn(name = "contact_id")
+//    @JsonIgnore
+//    private Contact contact;
+
+   // @ManyToMany(mappedBy = "address")
+    //private List<Contact> contact;
     public Address(AddressDTO addressDTO) {
         super();
 

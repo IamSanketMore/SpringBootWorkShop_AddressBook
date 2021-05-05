@@ -34,8 +34,15 @@ public class Contact
 //            inverseJoinColumns = {@JoinColumn(name = "address_id")})
 //    private Address address;
 
-    @OneToMany(cascade = CascadeType.ALL,mappedBy = "contact")
-    //@JoinColumn(name = "contact_fk_id")
+//  @OneToMany(cascade = CascadeType.ALL,mappedBy = "contact")
+//    //@JoinColumn(name = "contact_fk_id")
+//    private List<Address> address;
+
+    @ManyToMany(cascade = CascadeType.ALL)
+    //@JoinColumn(name = "address_id")
+    @JoinTable(name = "person_details",
+            joinColumns = {@JoinColumn(name = "contact_id")},
+            inverseJoinColumns = {@JoinColumn(name = "address_id")})
     private List<Address> address;
 
     public Contact() {

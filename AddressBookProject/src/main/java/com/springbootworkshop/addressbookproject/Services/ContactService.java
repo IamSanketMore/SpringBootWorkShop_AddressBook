@@ -84,8 +84,9 @@ public class ContactService implements IContactService
         Contact contact = contactRepository.findById(UUID.fromString(contactId)).orElseThrow(()-> new AddressException("details not found!"));
         Address address = addressRepository.findById(UUID.fromString(addressId)).orElseThrow(()-> new AddressException("details not found!"));
 
-        address.setContact(contact);
+        //address.setContact(contact);
 
         return contactRepository.save(contact);
     }
+
 }
